@@ -1,0 +1,28 @@
+{
+  "name": "datatables-metadata",
+  "homepage": "https://github.com/kjhangiani/datatables-metadata",
+  "authors": [
+    "Kevin Jhangiani <kevinjh@gmail.com>"
+  ],
+  "description": "jquery-datatables metadata plugin, adds column specific metadata, and useful API calls for range filtering",
+  "main": "js/dataTables.metadata.js",
+  "dependencies": {
+    "jquery": ">=1.7.0",
+    "datatables": ">=1.10.8"
+  },
+  "keywords": [
+    "datatables",
+    "metadata",
+    "dateRange",
+    "range",
+    "filter"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
