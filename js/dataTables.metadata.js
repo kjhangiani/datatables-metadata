@@ -207,7 +207,7 @@ MetaData.defaults = {
  * @type {string}
  * @static
  */
-MetaData.version = '0.3.0-dev';
+MetaData.version = '0.3.0';
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
