@@ -42,11 +42,11 @@ Store column specific metadata in the datatable.  This is used by the filtering 
 ### Date Range Filters (requires moment.js)
 
 - `.column().dateRange(min, max)` // date range filtering for a column.  either min or max can be `null` to enable one sided filtering.  Values can be strings (parsed via moment.js) or JS date objects
-- `.column().range()` // clear date range filters on this column
+- `.column().dateRange()` // clear date range filters on this column
 
 
 ### Utility
-- `.pick(attr1, attr2, ... attrN)` // similar to .pluck(), but returns a new instance of the Datatables API with the result set being an array of objects with the specified keys.  Intended to be used when chained after `.data()` or `.columns().data()` or similar api calls.
+- `.pick(attr1, attr2, ... attrN)` // similar to `.pluck(),` but returns a new instance of the Datatables API with the result set being an array of objects with the specified keys.  Intended to be used when chained after `.data()` or `.columns().data()` or similar api calls.
 - `.pick([attr1, attr2, ... attrN])` // identical to above, but accepts the attributes in an array.  this version will be used if `arguments.length===1` and the first argument is an array.
 
 
