@@ -1,5 +1,7 @@
 # Datatables-Metadata
-Datatables Metadata Plugin - Adds API hooks for column metadata, as well as advanced range filters.
+Datatables Metadata Plugin - Adds API hooks for column metadata
+
+This plugin is best used in conjunction with `datatables-improved-filters`, which will allow more advanced column specific filtering.
 
 # Installation
 
@@ -31,18 +33,12 @@ This plugin provides the following additional API calls:
 Store column specific metadata in the datatable.  This is used by the filtering functions below, but can also be used to store arbitrary data related to the column as required.  This data is state saved if state saving is enabled.
 
 - `.column().meta()` // retrieve meta information for a column
-- `.column().meta(obj)` // set the metadata for a column to the specified object (replaces any existing metadata)
-- `.column().meta(key, data)` // set the `key` property in the column metadata object to `data`
-
-### Numeric Range Filters
-
-- `.column().range(min, max)` // numeric range filtering for a column.  either min or max can be `null` to enable one sided filtering
-- `.column().range()` // clear numeric range filters on this column
-
-### Date Range Filters (requires moment.js)
-
-- `.column().dateRange(min, max)` // date range filtering for a column.  either min or max can be `null` to enable one sided filtering.  Values can be strings (parsed via moment.js) or JS date objects
-- `.column().dateRange()` // clear date range filters on this column
+- `.column().meta(key)` // retrieve meta information for a column, under the key `key`
+- `.column().meta.replace(data)` // set the entire column meta to the object passed in as `data`
+- `.column().meta.clear()` // remove all metadata for this column
+- `.column().meta.set(key, data)` // set the `key` property in the column metadata object to `data`
+- `.column().meta.merge(key, data)` // merge the `key` property in the column metadata object with the object passed in to `data`
+- `.column().meta.remove(key)` // remove all metadata under `key`
 
 
 ### Utility
