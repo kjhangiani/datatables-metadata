@@ -9,6 +9,9 @@
  * The primary use of this plugin is in conjunction with datatables-improved-filters which allow column specific filtering
  *
  * This plugin adds:
+ * .meta() returns all metadata
+ * .meta.clear() clears all metadata
+ * .meta.remove(key) removes key from all metadata
  * .column().meta()
  * .column().meta(key)
  * .column().meta.replace(object)
@@ -207,6 +210,20 @@ MetaData.defaults = {
   columns: [],
 };
 
+MetaData._clearAll = function(metaObj) {
+  var len = metaObj.length;
+  for (var i = 0; i < len; i ++) {
+    MetaData._clearData(metaObj, i);
+  }
+};
+
+MetaData._removeAll = function(metaObj, key) {
+  var len = metaObj.length;
+  for (var i = 0; i < len; i++) {
+    MetaData._removeKeyData(metaObj, i, key);
+  }
+};
+
 MetaData._initData = function(metaObj, index) {
   if (!metaObj[index]) { metaObj[index] = {}; }
   
@@ -227,8 +244,7 @@ MetaData._getKeyData = function(metaObj, index, key) {
 };
 
 MetaData._clearData = function(metaObj, index) {
-  var meta = MetaData._initData(metaObj, index);
-  meta = null;
+  metaObj[index] = {};
 };
 
 MetaData._replaceData = function(metaObj, index, data) {
@@ -270,6 +286,9 @@ MetaData.version = '0.3.0';
 
  
  /**
+  .meta() return all metadata (metadata.columns)
+  .meta.clear() null all columns meta data
+  .meta.remove(key) null key on each column
   .column().meta()
   .column().meta(key)
   .column().meta.replace(object)
@@ -367,6 +386,46 @@ DataTable.Api.register( 'column().meta.clear()', function() {
   
   var colIndex = this.index();
   MetaData._clearData(metadata.columns, colIndex);
+  
+  return this;  
+});
+
+DataTable.Api.register( 'meta()', function(key) {
+  var metadata = this.settings()[0]._metadata;
+  
+  
+  // we have not loaded the plugin, return this to chain
+  if (!metadata) {
+    return null;
+  } 
+  
+  return $.extend(true, {}, {}, metadata.columns);
+});
+
+DataTable.Api.register( 'meta.clear()', function() {
+  var metadata = this.settings()[0]._metadata;
+  
+  
+  // we have not loaded the plugin, return this to chain
+  if (!metadata) {
+    return this;
+  } 
+  
+  MetaData._clearAll(metadata.columns);
+  
+  return this;  
+});
+
+DataTable.Api.register( 'meta.remove()', function(key) {
+  var metadata = this.settings()[0]._metadata;
+  
+  
+  // we have not loaded the plugin, return this to chain
+  if (!metadata) {
+    return this;
+  } 
+  
+  MetaData._removeAll(metadata.columns, key);
   
   return this;  
 });

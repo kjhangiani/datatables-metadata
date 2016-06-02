@@ -32,6 +32,10 @@ This plugin provides the following additional API calls:
 
 Store column specific metadata in the datatable.  This is used by the filtering functions below, but can also be used to store arbitrary data related to the column as required.  This data is state saved if state saving is enabled.
 
+- `.meta()` // return all metadata for all columns
+- `.meta.clear()` // clear all metadata for all columns
+- `.meta.remove(key)` // remove key from all columns metadata
+
 - `.column().meta()` // retrieve meta information for a column
 - `.column().meta(key)` // retrieve meta information for a column, under the key `key`
 - `.column().meta.replace(data)` // set the entire column meta to the object passed in as `data`
